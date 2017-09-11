@@ -59,7 +59,7 @@ export class LugaresComponent {
       this.state = 'final';
     }, error => {
       console.log(error);
-      alert('Tenemos dificultades, disculpe las molestias Error: '+ error.statusText)
+      alert('Tenemos dificultades, disculpe las molestias Error: ' + error.statusText)
     });
     
     /*setTimeout(()=> {

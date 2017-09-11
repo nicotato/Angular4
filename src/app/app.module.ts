@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AgmCoreModule } from '@agm/core';
 import { ResaltarDirective } from './directives/resaltar.directive';
@@ -21,14 +21,18 @@ import { CrearComponent } from './crear/crear.component';
 import { HttpModule } from '@angular/http';
 import { LinkifystrPipe } from './pipes/linkifystr.pipe';
 import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
+import { AutorizacionService } from "./services/autorizacion.service";
+import { MyGuardService } from "./services/my-guard.service";
 
 const appRoutes: Routes = [
   {path: '', component: LugaresComponent},
   {path: 'lugares', component: LugaresComponent},
   {path: 'detalle/:id', component: DetalleComponent},
   {path: 'contacto', component: ContactoComponent},
-  {path: 'crear/:id', component: CrearComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'crear/:id', component: CrearComponent, canActivate:[MyGuardService]},
+  {path: 'login', component: LoginComponent},
+  {path: 'registro', component: RegistroComponent}
 ];
 
 export const firebaseConfig = {
@@ -49,7 +53,8 @@ export const firebaseConfig = {
     ContactoComponent,
     CrearComponent,
     LinkifystrPipe,
-    LoginComponent
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -62,9 +67,10 @@ export const firebaseConfig = {
       AngularFireModule.initializeApp(firebaseConfig),
       AngularFireDatabaseModule,
       AngularFireAuthModule,
-      HttpModule
+      HttpModule,
+      ReactiveFormsModule
   ],
-  providers: [LugaresService],
+  providers: [LugaresService, AutorizacionService, MyGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

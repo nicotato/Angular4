@@ -12,17 +12,17 @@
             <h2>Lugares Cercanos</h2>
             <a  class="btn btn-primary" routerLink="/crear/new">Crear Nuevo Negocio</a>
             <ul class="list-group">
-            <ng-container *ngFor="let lugar of lugares">
-                <!--[queryParams]="{action:'view',referer:'google'}"-->
-                    <li class="list-group-item" >
-                        <a routerLink="/crear/{{lugar.id}}" ><h3>{{lugar.nombre}}</h3></a>  
-                        <br />
-                        <small>Creado: {{lugar.id | date:'mediumTime' | uppercase}}</small>
-                        <br />
-                        <p [innerHtml]="lugar.descripcion | linkifystr"></p>
-                    </li><!--*ngIf="lugar.active"-->
-                 
-            </ng-container>
+                <ng-container *ngFor="let lugar of lugares">
+                    <!--[queryParams]="{action:'view',referer:'google'}"-->
+                        <li class="list-group-item" >
+                            <a routerLink="/crear/{{lugar.id}}" ><h3>{{lugar.nombre}}</h3></a>  
+                            <br />
+                            <small>Creado: {{lugar.id | date:'mediumTime' | uppercase}}</small>
+                            <br />
+                            <p [innerHtml]="lugar.descripcion | linkifystr"></p>
+                        </li><!--*ngIf="lugar.active"-->
+                    
+                </ng-container>
             </ul>
         </div>  
         <div class="col-md-4" [@contenedorAnimable]='state'>
